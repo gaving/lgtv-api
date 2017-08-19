@@ -4,7 +4,7 @@ import _ from 'lodash';
 class Resource {
   connect() {
     return new Promise((resolve, reject) => {
-      lgtv.connect((err, resp) => {
+      lgtv.connect("lgsmarttv.mynet", (err, resp) => {
         if (err) {
           reject(resp);
         } else {

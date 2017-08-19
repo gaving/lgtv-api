@@ -7,7 +7,7 @@ class Action {
   }
   connect() {
     return new Promise((resolve, reject) => {
-      lgtv.connect((err, resp) => {
+      lgtv.connect("lgsmarttv.mynet", (err, resp) => {
         if (err) {
           reject(resp);
         } else {
@@ -40,6 +40,10 @@ class Action {
   }
   post(req, res) {
     this.connect().then(() => {
+      if (_.isEmpty(req.body)) {
+        res.send({error: "no operation found"});
+      }
+      console.log(req.body);
       let [[op, val]] = _.pairs(req.body);
       lgtv['set_' + op](val, (err, resp) => {
         res.send(resp);
