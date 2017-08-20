@@ -7,7 +7,7 @@ class Action {
   }
   connect() {
     return new Promise((resolve, reject) => {
-      lgtv.connect("lgsmarttv.mynet", (err, resp) => {
+      lgtv.connect(process.env.LG_TV_HOST, (err, resp) => {
         if (err) {
           reject(resp);
         } else {
